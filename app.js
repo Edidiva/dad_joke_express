@@ -1,7 +1,8 @@
 const  express = require('express');
 const axios = require('axios');
-const jokeRoute = require('./routes/dadJoke');
+const jokeRoute = require('./backend/routes/dadJoke');
 const path = require('path');
+const cors = require('cors')
 
 const app = express();
 
@@ -9,7 +10,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 app.use(express.static(path.join(__dirname, 'frontend')));
-
+app.use(cors());
 app.use('/dad-jokes', jokeRoute);
 
 

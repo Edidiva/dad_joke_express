@@ -12,9 +12,11 @@ const API_HEADERS = {
 const getRandomDadJoke = async (req, res, next) => {
   try {
     const request = await axios.get(API_URL, { headers: API_HEADERS });
-    const joke =`setup: ${request.data.body[0].setup}, \npunchline: ${request.data.body[0].punchline}`;
+    // const joke =`setup: ${request.data.body[0].setup}, \npunchline: ${request.data.body[0].punchline}`;
+    const setup = request.data.body[0].setup;
+    const punchline = request.data.body[0].punchline;
+    const joke = { setup, punchline };
     res.json({ joke });
-    
   } catch (error) {
     console.log(error)
     next( new Error ('failed to get joke'));
@@ -24,5 +26,3 @@ const getRandomDadJoke = async (req, res, next) => {
 module.exports = {
   getRandomDadJoke
 };
-
-

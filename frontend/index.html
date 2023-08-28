@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random Dad Joke Generator</title>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
   <h1>Random Dad Joke Generator</h1>
@@ -16,11 +17,11 @@
 
     getJokeButton.addEventListener('click', async () => {
       try {
-        const response = await fetch('/random-joke'); 
+        const response = await fetch('http://localhost:3000/dad-jokes/random-joke');
         const data = await response.json();
-        
         if (response.ok) {
-          jokeContainer.innerHTML = `<p>${data.joke}</p>`;
+          const jokeText = `Setup: ${data.joke.setup}<br>Punchline: ${data.joke.punchline}`;
+          jokeContainer.innerHTML = `<p>${jokeText}</p>`;
         } else {
           jokeContainer.innerHTML = '<p>Failed to fetch a joke.</p>';
         }
